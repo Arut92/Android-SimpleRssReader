@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="all_news">Все новости</string>
+    <string name="favorites">Избранные</string>
+    <string name="unread">Непрочитанные</string>
+</resources>

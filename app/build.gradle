@@ -1,0 +1,92 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    def globalConfiguration = rootProject.extensions.getByName("ext")
+
+    compileSdkVersion globalConfiguration.getAt("androidCompileSdkVersion")
+    buildToolsVersion globalConfiguration.getAt("androidBuildToolsVersion")
+
+    defaultConfig {
+        applicationId "ru.arutyun.agababyanarutyun"
+        minSdkVersion globalConfiguration.getAt("androidMinSdkVersion")
+        targetSdkVersion globalConfiguration.getAt("androidTargetSdkVersion")
+        versionCode globalConfiguration.getAt("androidVersionCode")
+        versionName globalConfiguration.getAt("androidVersionName")
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
+
+    compileOptions {
+        encoding = 'UTF-8'
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+}
+
+dependencies {
+    compile project(':data')
+    compile project(':domain')
+
+    // Design
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:design:23.1.0'
+    compile 'com.android.support:support-v4:23.1.0'
+    compile 'com.android.support:recyclerview-v7:23.1.0'
+    compile 'com.android.support:cardview-v7:23.1.0'
+    compile 'com.pnikosis:materialish-progress:1.7'
+    compile('com.mikepenz:materialdrawer:4.4.9@aar') {
+        transitive = true
+    }
+    // Glide
+    compile 'com.github.bumptech.glide:glide:3.6.1'
+
+    // ButterKnife
+    compile 'com.jakewharton:butterknife:6.1.0'
+
+    // Dagger 2
+    apt 'com.google.dagger:dagger-compiler:2.0'
+    compile 'com.google.dagger:dagger:2.0'
+    provided 'javax.annotation:jsr250-api:1.0'
+
+    // JUnit
+    testCompile 'junit:junit:4.12'
+
+    // Espresso
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.1') {
+        exclude module: 'espresso-idling-resource'
+        exclude group: 'com.android.support'
+    }
+    androidTestCompile('com.android.support.test.espresso:espresso-contrib:2.2.1') {
+        exclude module: 'espresso-core'
+        exclude module: 'recyclerview-v7'
+        exclude group: 'com.android.support'
+    }
+    androidTestCompile('com.android.support.test:rules:0.4') {
+        exclude group: 'com.android.support'
+    }
+    androidTestCompile('com.android.support.test:runner:0.4') {
+        exclude group: 'com.android.support'
+    }
+}

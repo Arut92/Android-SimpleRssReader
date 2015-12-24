@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ru.arutyun.agababyanarutyun.ui.view.NestedScrollableSwipeRefreshLayout
+        android:id="@+id/contentView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.pnikosis.materialishprogress.ProgressWheel
+                android:id="@+id/pb_wheel"
+                android:layout_width="@dimen/progress_wheel_width"
+                android:layout_height="@dimen/progress_wheel_height"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center"
+                app:matProg_barColor="@color/colorAccent"
+                app:matProg_progressIndeterminate="true"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/news_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                app:layoutManager="LinearLayoutManager"
+                tools:listitem="@layout/news_list_item" />
+        </FrameLayout>
+
+    </ru.arutyun.agababyanarutyun.ui.view.NestedScrollableSwipeRefreshLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_read_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/ic_envelope_open_white" />
+
+</android.support.design.widget.CoordinatorLayout>
